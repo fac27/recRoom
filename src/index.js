@@ -1,3 +1,4 @@
-import chalk from 'chalk';
+const server = require('./server.js');
+const PORT = process.env.PORT || 8080;
 
-console.log(chalk.blue('Hello world!'));
+server.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
