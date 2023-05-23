@@ -1,0 +1,28 @@
+name: Continuous testing
+
+on:
+  push:
+    branches:
+      - dev  
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: "18.16.0"
+
+    - name: Install dependencies
+      run: npm install  
+    
+    - name: Add project dependencies
+      run: npm install better-sqlite3 chalk express nodemon volta
+
+    - name: Run tests
+      run: npm test  # Change this to the command required to run your tests
