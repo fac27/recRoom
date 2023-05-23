@@ -10,11 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/fac27/recRoom.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fac27/recRoom/issues"
   },
-  "homepage": "https://github.com/fac27/recRoom#readme"
+  "homepage": "https://github.com/fac27/recRoom#readme",
+  "dependencies": {
+    "node": "^20.2.0"
+  }
 }
