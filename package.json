@@ -18,5 +18,9 @@
   "homepage": "https://github.com/fac27/recRoom#readme",
   "dependencies": {
     "node": "^20.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "eslint-config-kentcdodds": "^20.5.0"
   }
 }
