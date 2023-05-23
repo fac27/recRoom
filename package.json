@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/server/index.js"
-    "seed": "DB_FILE=database.sqlite nodemon ./src/index.js"
+    "dev": "DB_FILE=db.sqlite nodemon ./src/index.js",
+    "seed": "DB_FILE=db.sqlite node ./src/database/seed.js"
   },
   "repository": {
     "type": "git",
