@@ -8,13 +8,13 @@ This app uses MySqlite file-based database for persistent storage. Data is arran
 
 ## User Stories
 
--[ ] As a user I want to recomend individual songs via spotify links
--[ ] As a user I want to recommend songs to my cohort
--[ ] As a user I want to read others recomnedations
--[ ] As a user I want to be able to upvote or downvote other's recomendations
--[ ] As a user I want to be able to tell the site who I am
+- [ ] As a user I want to recomend individual songs via spotify links
+- [ ] As a user I want to recommend songs to my cohort
+- [ ] As a user I want to read others recomnedations
+- [ ] As a user I want to be able to upvote or downvote other's recomendations
+- [ ] As a user I want to be able to tell the site who I am
 
 ### Stretch Stories
--[ ] As a user I want to be able to sort posts by popularity/time
--[ ] As a user I want to be able to edit posts I have made
--[ ] As a user I want to be able to delete my own posts
+- [ ] As a user I want to be able to sort posts by popularity/time
+- [ ] As a user I want to be able to edit posts I have made
+- [ ] As a user I want to be able to delete my own posts
