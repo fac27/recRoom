@@ -1,10 +1,5 @@
 const db = require('../src/database/db.js')
 
-const delete_post = db.prepare(/*sql*/`
-DELETE FROM posts where id = $id
-`);
-
-
 const deletePost = (postId) =>{
     return delete_post.run({id: postId});
 };
@@ -19,3 +14,4 @@ server.post('/delete/:post', (req, res) => {
         savePosts(posts);
     res.redirect('/');}
   });
+
