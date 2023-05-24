@@ -26,7 +26,7 @@ const home = () => {
     'simon',
     'taha',
     'tom',
-    'zak',
+    'zack',
   ];
 
   const nameEls = names.map((name) => {
@@ -57,9 +57,11 @@ function board(user, posts) {
   const title = 'Music Recs';
   const postEls = posts.map((post) => {
     return /*html*/ `
-    <p class="artist">${post.artist}</p>
-    <p class="song">${post.song}</p>
-    <p class="posted_at">${post.posted_at}</p>
+    <article class="stack-s post_article">
+        <p class="artist">${post.artist}</p>
+        <p class="song">${post.song}</p>
+        <p class="posted_at">${post.posted_at}</p>
+    </article>
     `;
   });
 
@@ -70,8 +72,12 @@ function board(user, posts) {
 
     <main class="posts_section">
         <h2 class="music_recs_title">FAC27 Music Recs</h2>
-        <article>${postEls.join('')}</article>
+        ${postEls.join('')}
     </main>
+
+    <footer>
+        The Best Music Recommendation App!
+    </footer>
     `;
 
   return layout(title, content);
@@ -160,5 +166,19 @@ const styles = /*css*/ `
 
     .music_recs_title {
         border-bottom: 1px solid black;
+    }
+
+    .post_article {
+        margin-top: 2rem;
+        border: 1px solid #617289;
+        border-radius: 0.4rem;
+        width: 35%;
+        padding: 1rem;
+    }
+
+    footer {
+        text-align: center;
+        margin: 12rem 0 2rem 0;
+        font-weight: bold;
     }
 `;
