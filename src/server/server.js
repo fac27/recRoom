@@ -1,56 +1,26 @@
-const express = require("express");
-const { getAllPosts, createPost } = require("../model/posts");
-const { home, board } = require("./template");
+const express = require('express');
 const server = express();
 
-server.use(express.static("public"));
+const { getAllPosts } = require('../model/posts');
+const { getUsers } = require('../model/users');
+const { home, board } = require('./template');
 
-server.get("/", (req, res) => {
+server.use(express.static('public'));
+
+const users = getUsers();
+
+server.get('/', (req, res) => {
   res.send(home());
 });
 
-const users = [
-  "taha",
-  "mark",
-  "cameo",
-  "zak",
-  "simon",
-  "beth",
-  "alphonso",
-  "thom",
-];
+server.post('/', express.urlencoded({ extended: true }), (req, res) => {
+  const { name } = req.body;
 
-server.get("/board/:name", async (req, res) => {
-  const name = req.params.name;
   if (users.includes(name)) {
-    const posts = await getAllPosts();
-    res.send(board(name, posts));
-
+    res.send(board(name, getAllPosts()));
   } else {
-    res.redirect("/");
+    res.redirect('/');
   }
 });
-
-server.post(
-  "/post",
-  express.urlencoded({ extended: false }),
-  async (req, res) => {
-    const { user_id, artist, song, spotify_url } = req.body;
-    console.log(`Adding recommendation by ${user_id} (${song} by ${artist})`);
-
-    const post_id = await createPost({ user_id, artist, song, spotify_url });
-
-    if (post_id) {
-      res.status(201).send({
-        message: `Post created with id: ${post_id}`,
-        redirect: "/",
-      });
-    } else {
-      res.status(400).send({
-        message: `Error creating post`,
-        redirect: "/" });
-    }
-  }
-);
 
 module.exports = server;
