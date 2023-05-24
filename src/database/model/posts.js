@@ -4,7 +4,8 @@ const get_all_posts = db.prepare(/*sql*/`
 SELECT 
   p.id AS post_id, 
   p.artist, 
-  p.song, 
+  p.song,
+  p.spotify_url,
   u.name AS user_name, 
   p.posted_at
 FROM posts AS p
