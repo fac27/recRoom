@@ -11,11 +11,11 @@ INSERT INTO users (id, name) VALUES
 (8, 'tom')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO posts (id, artist, song, user_id) VALUES
-(1, 'elvis presley', 'jailhouse rock', 3),
-(2, 'dolly parton', 'jolene', 4),
-(3, 'tool', 'schism', 5),
-(4, 'britney spears', 'toxic', 6)
+INSERT INTO posts (id, artist, song, spotify_url, user_id) VALUES
+(1, 'elvis presley', 'jailhouse rock', 'https://open.spotify.com/track/4gphxUgq0JSFv2BCLhNDiE?si=ed369955e7354e25',3),
+(2, 'dolly parton', 'jolene', 'https://open.spotify.com/track/2SpEHTbUuebeLkgs9QB7Ue?si=cf4c20a5c7664626', 4),
+(3, 'tool', 'schism', 'https://open.spotify.com/track/55mJleti2WfWEFNFcBduhc?si=361fbddf3c4a4397', 5),
+(4, 'britney spears', 'toxic', 'https://open.spotify.com/track/6I9VzXrHxO9rA9A5euc8Ak?si=fedc7ca679844c63', 6)
 ON CONFLICT DO NOTHING;
 
 INSERT INTO ratings (rating, user_id, post_id) VALUES
