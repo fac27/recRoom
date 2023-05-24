@@ -23,4 +23,8 @@ server.post('/', express.urlencoded({ extended: true }), (req, res) => {
   }
 });
 
+// server.get('/board', (req, res) => {
+//   res.send(board(name, getAllPosts()));
+// })
+
 module.exports = server;
