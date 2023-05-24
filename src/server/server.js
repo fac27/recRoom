@@ -1,4 +1,5 @@
 const express = require('express');
+const { getAllPosts } = require('../database/model/posts');
 const { home, board } = require('./template');
 const server = express();
 
@@ -9,23 +10,29 @@ server.get('/', (req, res) => {
 });
 
 const users = [
-  'Taha',
-  'Mark',
-  'Cameo',
-  'Zak',
-  'Simon',
-  'Beth',
-  'Alphonso',
-  'Thom',
+  'taha',
+  'mark',
+  'cameo',
+  'zak',
+  'simon',
+  'beth',
+  'alphonso',
+  'thom',
 ];
 
-server.get('/board/:name', (req, res) => {
+server.get('/board/:name', async (req, res) => {
   const name = req.params.name;
   if (users.includes(name)) {
-    res.send(board(name));
+    const posts = await getAllPosts();
+    res.send(board(name, posts));
   } else {
     res.redirect('/');
   }
+});
+
+server.get('/test/', async (req, res) => {
+  const posts = await getAllPosts();
+  console.log(posts)
 });
 
 server.post('/post', (req, res) => {
