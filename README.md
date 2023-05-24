@@ -1,5 +1,25 @@
 # recRoom
 
+## Installation
+
+Run the following command to clone the directory:
+```
+git clone https://github.com/fac27/recRoom/
+```
+Then open the project in your code editor.
+
+Run the following command to install dependencies:
+```
+npm install
+```
+
+And this command to start the server:
+```
+npm run dev
+```
+And finally navigate to http://localhost:8080/ to see the site.
+
+
 ## Database design
 
 This app uses MySqlite file-based database for persistent storage. Data is arranged in three tables: users, posts and ratings. Tables' fields and relations to other tables can be seen in the following database diagram:
