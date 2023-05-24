@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllPosts, createPost } = require("../database/model/posts");
+const { getAllPosts, createPost } = require("../model/posts");
 const { home, board } = require("./template");
 const server = express();
 

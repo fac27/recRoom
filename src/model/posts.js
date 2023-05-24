@@ -1,11 +1,12 @@
-const db = require('../database/db');
+const db = require("../database/db");
 
-const get_all_posts = db.prepare(/*sql*/ `
-SELECT
-  p.id AS post_id,
-  p.artist,
+const get_all_posts = db.prepare(/*sql*/`
+SELECT 
+  p.id AS post_id, 
+  p.artist, 
   p.song,
-  u.name AS user_name,
+  p.spotify_url,
+  u.name AS user_name, 
   p.posted_at
 FROM posts AS p
 JOIN users AS u ON p.user_id = u.id
@@ -16,4 +17,22 @@ function getAllPosts() {
   return get_all_posts.all();
 }
 
-module.exports = { getAllPosts };
+const create_post = db.prepare(/*sql*/`
+  INSERT INTO posts (
+    user_id,
+    artist,
+    song,
+    spotify_url)
+  VALUES (
+    $user_id,
+    $artist,
+    $song,
+    $spotify_url)
+  RETURNING id
+  `);
+
+function createPost({user_id, artist, song, spotify_url}) {
+  return create_post.get({ user_id, artist, song, spotify_url });
+}
+
+module.exports = { getAllPosts, createPost };
