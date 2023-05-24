@@ -24,7 +24,7 @@ And finally navigate to http://localhost:8080/ to see the site.
 
 This app uses MySqlite file-based database for persistent storage. Data is arranged in three tables: users, posts and ratings. Tables' fields and relations to other tables can be seen in the following database diagram:
 
-![recRoom database diagram](https://github.com/fac27/recRoom/assets/32879360/7fe7cbdf-1090-442a-9058-e40a4fcdeddc)
+![recRoom database diagram](https://github.com/fac27/recRoom/assets/32879360/5b83b1c2-d236-414d-b675-ec34672260c9)
 
 ## User Stories
 
