@@ -7,6 +7,8 @@ const layout = (title, content) => {
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <!-- ICONSCOUT CDN LINK -->
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <title>${title}</title>
         <style>${styles}</style>
       </head>
@@ -74,14 +76,36 @@ function board(user, posts) {
         <h2 class="music_recs_title">FAC27 Music Recs</h2>
         ${postEls.join('')}
     </main>
-
-    <footer>
-        The Best Music Recommendation App!
-    </footer>
+    ${addPost()}
     `;
 
   return layout(title, content);
 }
+
+const addPost = () => {
+  return /*html*/ `
+    <footer>
+        <button class="add_post" id="hideshow" onclick="
+            const form = document.getElementById('addPostForm')
+            if (form.style.display === 'block') form.style.display = 'none';
+            else form.style.display = 'block';">
+        <i class="uil uil-plus"></i></button>
+
+        <form id="addPostForm" method='POST' action='/' style="display: none">
+            <label for="artist">Artist: </label>
+            <input type="text" name="artist">
+
+            <label for="song">Song:</label>
+            <input type="text" name="song">
+
+            <label for="spotify_url">Spotify URL:</label>
+            <input type="text" name="spotify_url">
+
+            <button type="submit">Submit</button>
+        </form>
+    </footer>
+    `;
+};
 
 module.exports = { home, board };
 
@@ -89,7 +113,7 @@ const styles = /*css*/ `
     * {
         margin: 0;
         padding: 0;
-        box-sizing: bodrder-box;
+        box-sizing: border-box;
     }
 
     html {
@@ -140,6 +164,24 @@ const styles = /*css*/ `
         font-size: 1.4rem;
     }
 
+    #addPostForm {
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        font-weight: normal;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #addPostForm input, #addPostForm button {
+        padding: 0.3rem;
+        border-radius: 0.3rem;
+        border: 1px solid gray;
+    }
+
+    #addPostForm button {
+        cursor: pointer;
+    }
+
     form .select_name {
         margin-bottom: 1rem;
     }
@@ -176,9 +218,20 @@ const styles = /*css*/ `
         padding: 1rem;
     }
 
+    .add_post {
+        margin-top: 2rem;
+        cursor: pointer;
+        padding: 0.6rem;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        border: 1px solid #18d860;
+        background: #18d860;
+        color: white;
+    }
+
     footer {
         text-align: center;
-        margin: 12rem 0 2rem 0;
+        margin: 3rem 0 2rem 0;
         font-weight: bold;
     }
 `;

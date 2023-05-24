@@ -3,6 +3,7 @@
 ## Installation
 
 Run the following command to clone the directory:
+
 ```
 git clone https://github.com/fac27/recRoom/
 ```
@@ -33,6 +34,7 @@ This app uses MySqlite file-based database for persistent storage. Data is arran
 - [ ] As a user I want to read others recomnedations
 - [ ] As a user I want to be able to upvote or downvote other's recomendations
 - [ ] As a user I want to be able to tell the site who I am
+
 
 ### Stretch Stories
 - [ ] As a user I want to be able to sort posts by popularity/time
