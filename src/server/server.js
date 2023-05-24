@@ -30,11 +30,6 @@ server.get("/board/:name", async (req, res) => {
   }
 });
 
-server.get("/test", async (req, res) => {
-  const posts = await getAllPosts();
-  res.send(posts);
-});
-
 server.post(
   "/post",
   express.urlencoded({ extended: false }),
