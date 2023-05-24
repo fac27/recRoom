@@ -10,8 +10,8 @@ server.get('/', (req, res) => {
   res.send(home());
 });
 
-
 const users = getUsers();
+
 
 server.get('/board/:name', async (req, res) => {
   const name = req.params.name;
