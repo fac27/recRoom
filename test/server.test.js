@@ -9,5 +9,5 @@ test('/ route returns html response', async () => {
         headers: { 'content-type': 'application/x-www-form-urlencoded' },
       });
     assert.equal(status, 200);
-    assert.match(body, /<html>/i, 'Response should contain <html>');
+    assert.match(body, /<html.*>/i, 'Response should contain <html>');
 });

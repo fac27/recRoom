@@ -25,6 +25,7 @@ server.get("/board/:name", async (req, res) => {
   if (users.includes(name)) {
     const posts = await getAllPosts();
     res.send(board(name, posts));
+
   } else {
     res.redirect("/");
   }

@@ -18,34 +18,31 @@ const layout = (title, content) => {
 };
 
 const home = () => {
+  const names = [
+    'alphonso',
+    'cameo',
+    'beth',
+    'mark',
+    'simon',
+    'taha',
+    'tom',
+    'zack',
+  ];
+
+  const nameEls = names.map((name) => {
+    return /*html*/ `
+        <input type="radio" id=${name} name="name" value=${name}>
+        <label for=${name}>${name[0].toUpperCase()}${name.slice(1)}</label><br>
+    `;
+  });
+
   const title = 'Choose name';
   const content = /*html*/ `
     <main class="main__login">
-        <form class="names_form stack-m" method="POST" action="/board">
+        <form class="names_form stack-m" method="POST" action="/">
             <p class="select_name">Your name:</p>
-            <input type="radio" id="alphonso" name="name" value="alphonso">
-            <label for="alphonso">Alphonso</label><br>
 
-            <input type="radio" id="cameo" name="name" value="cameo">
-            <label for="cameo">Cam</label><br>
-
-            <input type="radio" id="beth" name="name" value="beth">
-            <label for="beth">Beth</label><br>
-
-            <input type="radio" id="mark" name="name" value="mark">
-            <label for="mark">Mark</label><br>
-
-            <input type="radio" id="simon" name="name" value="simon">
-            <label for="simon">Simon</label><br>
-
-            <input type="radio" id="taha" name="name" value="taha">
-            <label for="taha">Taha</label><br>
-
-            <input type="radio" id="tom" name="name" value="tom">
-            <label for="tom">Tom</label><br>
-
-            <input type="radio" id="zak" name="name" value="zak">
-            <label for="zak">Zak</label><br>
+            ${nameEls.join('')}
 
             <button class="reset_name" type="reset">Reset</button>
             <button class="submit_name" type="submit">Submit</button>
@@ -56,65 +53,34 @@ const home = () => {
   return layout(title, content);
 };
 
-function post(name) {
-  return /*html*/ `
-    <form method="POST" action="/post">
-        <label for="artist">Artist name:</label>
-        <input
-            type="text"
-            name="artist"
-            id="artist">
-        <label for="song">Song name:</label>
-        <input
-            type="text"
-            name="song"
-            id="song">
-        <label for="link">Spotify Link:</label>
-        <input
-            type="text"
-            name="link"
-            id="link">
-    <label>Enter your message:</label>
-        <textarea
-            name="message"
-            id="message"
-            rows="4"
-            cols="30"
-        ></textarea>
-            <button type="submit" class="button" onclick="handleSubmit">
-           Submit
-            </button>
-    </form>
-    `;
-}
-
 function board(user, posts) {
-  return /*html*/ `
-    <header>
-    <h1>Hello ${user}</h1>
-    </header>
-    <main>
-    <ul>
-    <button></button>
-    </ul>
-    <section>
-    <h2>FAC27 Music Recs</h2>
-        <ul>
-        ${posts.map(boardPost).join('')}
-        </ul>
-    </section>
-    </main>
+  const title = 'Music Recs';
+  const postEls = posts.map((post) => {
+    return /*html*/ `
+    <article class="stack-s post_article">
+        <p class="artist">${post.artist}</p>
+        <p class="song">${post.song}</p>
+        <p class="posted_at">${post.posted_at}</p>
+    </article>
     `;
-}
+  });
 
-function boardPost(boardPost) {
-  return /*html*/ `
-    <h2>${boardPost.name}</h2>
-    <p>${boardPost.artist}</p>
-    <p>${boardPost.song}</p>
-    <p>${boardPost.url}</p>
-    <p>${boardPost.message}</p>
+  const content = /*html*/ `
+    <header class="posts_header">
+        <h1>Hello, ${user[0].toUpperCase()}${user.slice(1)}</h1>
+    </header>
+
+    <main class="posts_section">
+        <h2 class="music_recs_title">FAC27 Music Recs</h2>
+        ${postEls.join('')}
+    </main>
+
+    <footer>
+        The Best Music Recommendation App!
+    </footer>
     `;
+
+  return layout(title, content);
 }
 
 module.exports = { home, board };
@@ -192,5 +158,27 @@ const styles = /*css*/ `
         border: 1px solid grey;
         margin-right: 0.4rem;
         cursor: pointer;
+    }
+
+    .posts_header {
+        margin-top: 2rem;
+    }
+
+    .music_recs_title {
+        border-bottom: 1px solid black;
+    }
+
+    .post_article {
+        margin-top: 2rem;
+        border: 1px solid #617289;
+        border-radius: 0.4rem;
+        width: 35%;
+        padding: 1rem;
+    }
+
+    footer {
+        text-align: center;
+        margin: 12rem 0 2rem 0;
+        font-weight: bold;
     }
 `;
