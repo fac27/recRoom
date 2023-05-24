@@ -1,35 +1,26 @@
 const express = require('express');
-const { home, board } = require('./template');
 const server = express();
 
+const { getAllPosts } = require('../model/posts');
+const { getUsers } = require('../model/users');
+const { home, board } = require('./template');
+
 server.use(express.static('public'));
+
+const users = getUsers();
 
 server.get('/', (req, res) => {
   res.send(home());
 });
 
-const users = [
-  'Taha',
-  'Mark',
-  'Cameo',
-  'Zak',
-  'Simon',
-  'Beth',
-  'Alphonso',
-  'Thom',
-];
+server.post('/', express.urlencoded({ extended: true }), (req, res) => {
+  const { name } = req.body;
 
-server.get('/board/:name', (req, res) => {
-  const name = req.params.name;
   if (users.includes(name)) {
-    res.send(board(name));
+    res.send(board(name, getAllPosts()));
   } else {
     res.redirect('/');
   }
-});
-
-server.post('/post', (req, res) => {
-  res.redirect('/board');
 });
 
 module.exports = server;
