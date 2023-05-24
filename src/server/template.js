@@ -21,7 +21,7 @@ const home = () => {
   const title = 'Choose name';
   const content = /*html*/ `
     <main class="main__login">
-        <form class="names_form stack-m" method="POST" action="/post">
+        <form class="names_form stack-m" method="POST" action="/board">
             <p class="select_name">Your name:</p>
             <input type="radio" id="alphonso" name="name" value="alphonso">
             <label for="alphonso">Alphonso</label><br>

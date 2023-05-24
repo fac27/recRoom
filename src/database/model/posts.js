@@ -1,6 +1,6 @@
-const db = require('../db');
+const db = require("../db");
 
-const get_all_posts = db.prepare(`
+const get_all_posts = db.prepare(/*sql*/`
 SELECT 
   p.id AS post_id, 
   p.artist, 
@@ -13,7 +13,25 @@ ORDER BY p.posted_at DESC
 `);
 
 function getAllPosts() {
-    return get_all_posts.all();
-  }
+  return get_all_posts.all();
+}
 
-module.exports = { getAllPosts }
+const create_post = db.prepare(/*sql*/`
+  INSERT INTO posts (
+    user_id,
+    artist,
+    song,
+    spotify_url)
+  VALUES (
+    $user_id,
+    $artist,
+    $song,
+    $spotify_url)
+  RETURNING id
+  `);
+
+function createPost({user_id, artist, song, spotify_url}) {
+  return create_post.get({ user_id, artist, song, spotify_url });
+}
+
+module.exports = { getAllPosts, createPost };

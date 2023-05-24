@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllPosts } = require('../database/model/posts');
+const { getAllPosts, createPost } = require('../database/model/posts');
 const { home, board } = require('./template');
 const server = express();
 
@@ -30,13 +30,24 @@ server.get('/board/:name', async (req, res) => {
   }
 });
 
-server.get('/test/', async (req, res) => {
+server.get('/test', async (req, res) => {
   const posts = await getAllPosts();
-  console.log(posts)
+  res.send(posts)
 });
 
-server.post('/post', (req, res) => {
-  res.redirect('/board');
+server.post("/post", express.urlencoded({ extended: false }), async (req, res) => {
+
+  const { user_id, artist, song, url } = req.body;
+  console.log(`Adding recommendation by ${user_id} (${song} by ${artist})`);
+
+  const post_id = await createPost ({user_id, artist, song, url});
+
+  if (post_id) {
+    res.status(201).send(`Post created with id: ${typeof post_id}`);
+  }
+  else {
+    res.status(400).send('Post failed');
+  }
 });
 
 module.exports = server;
