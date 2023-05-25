@@ -65,6 +65,11 @@ function board(user, posts) {
         <p class="artist">${post.artist}</p>
         <p class="song">${post.song}</p>
         <p class="posted_at">${post.posted_at}</p>
+        <form class="delete_form" method="POST" action="/delete">
+            <input type="hidden" name="name" value="${user}">
+            <input type="hidden" name="post_id" value="${post.post_id}">
+            <button class="delete_post" type="submit"><i class="uil uil-trash-alt"></i></button>
+        </form>
     </article>
     `;
   });
