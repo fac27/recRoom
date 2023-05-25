@@ -46,4 +46,12 @@ function deletePost(post_id) {
  delete_post.run({ post_id });
 }
 
-module.exports = { getAllPosts, createPost, deletePost };
+const clear_ratings = db.prepare(/*sql*/`
+  DELETE FROM ratings
+`);
+
+function clearRatings() {
+  clear_ratings.run();
+}
+
+module.exports = { getAllPosts, createPost, deletePost, clearRatings };
