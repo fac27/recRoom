@@ -1,3 +1,4 @@
+const convertToEmbedURL = require('./convertUrl')
 const layout = (title, content) => {
   return /*html*/ `
     <!doctype html>
@@ -64,6 +65,7 @@ function board(user, posts) {
     <article class="stack-s post_article">
         <p class="artist">${post.artist}</p>
         <p class="song">${post.song}</p>
+        <iframe style="border-radius:12px" src=${convertToEmbedURL(post.spotify_url)} width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         <p class="posted_at">${post.posted_at}</p>
         <form class="delete_form" method="POST" action="/delete">
             <input type="hidden" name="name" value="${user}">
