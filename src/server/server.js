@@ -3,7 +3,7 @@ const express = require('express');
 const server = express();
 const bodyParser = express.urlencoded({ extended: true });
 
-const { getAllPosts, createPost, deletePost } = require('../model/posts');
+const { getAllPosts, createPost, deletePost, clearRatings } = require('../model/posts');
 const { getUsers } = require('../model/users');
 const { home, board } = require('./template');
 
@@ -44,6 +44,8 @@ server.post('/post', bodyParser, (req, res) => {
 server.post('/delete', bodyParser, (req, res) => {
   const { name, post_id } = req.body;
   console.log(`Deleting post ${post_id} for user ${name}`);
+  
+  clearRatings();
   deletePost(post_id);
 
   res.send(board(name, getAllPosts()));
