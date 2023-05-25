@@ -49,6 +49,8 @@ body {
 }
 
 form {
+  display: flex;
+  flex-direction: column;
   font-size: 1.4rem;
 }
 
@@ -124,14 +126,17 @@ input[type='radio'] {
 }
 
 footer {
-  text-align: center;
+  text-align: relative;
   margin: 3rem 0 2rem 0;
   font-weight: bold;
 }
 
 /* PHONES */
 @media (max-width: 500px) {
-  body {
-    background: red;
+  form {
+    font-size: 1rem;
+  }
+  .post_article{
+    width: 100%
   }
 }
