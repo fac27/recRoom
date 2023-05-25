@@ -35,8 +35,10 @@ const home = () => {
 
   const nameEls = names.map((name) => {
     return /*html*/ `
+        <div>
         <input type="radio" id=${name} name="name" value=${name} required>
         <label for=${name}>${name[0].toUpperCase()}${name.slice(1)}</label><br>
+        </div>
     `;
   });
 
