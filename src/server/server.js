@@ -26,6 +26,7 @@ server.post('/', bodyParser, (req, res) => {
   }
 });
 
+
 server.post('/post', bodyParser, (req, res) => {
   const { name, artist, song, spotify_url } = req.body;
   const user = users.find((user) => user.name === name);
@@ -41,3 +42,4 @@ server.post('/post', bodyParser, (req, res) => {
 });
 
 module.exports = server;
+
