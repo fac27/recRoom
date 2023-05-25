@@ -14,7 +14,9 @@ ORDER BY p.posted_at DESC
 `);
 
 function getAllPosts() {
-  return get_all_posts.all();
+  const posts = get_all_posts.all();
+  console.log(posts);
+  return posts;
 }
 
 const create_post = db.prepare(/*sql*/`
@@ -35,4 +37,13 @@ function createPost({user_id, artist, song, spotify_url}) {
   return create_post.get({ user_id, artist, song, spotify_url });
 }
 
-module.exports = { getAllPosts, createPost };
+const delete_post = db.prepare(/*sql*/`
+  DELETE FROM posts
+  WHERE id = $post_id
+`);
+
+function deletePost(post_id) {
+ delete_post.run({ post_id });
+}
+
+module.exports = { getAllPosts, createPost, deletePost };
