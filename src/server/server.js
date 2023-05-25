@@ -1,7 +1,9 @@
 const express = require('express');
-const server = express();
 
-const { getAllPosts } = require('../model/posts');
+const server = express();
+const bodyParser = express.urlencoded({ extended: true });
+
+const { getAllPosts, createPost } = require('../model/posts');
 const { getUsers } = require('../model/users');
 const { home, board } = require('./template');
 
@@ -13,14 +15,29 @@ server.get('/', (req, res) => {
   res.send(home());
 });
 
-server.post('/', express.urlencoded({ extended: true }), (req, res) => {
+server.post('/', bodyParser, (req, res) => {
   const { name } = req.body;
+  const names = users.map((user) => user.name);
 
-  if (users.includes(name)) {
+  if (names.includes(name)) {
     res.send(board(name, getAllPosts()));
   } else {
     res.redirect('/');
   }
+});
+
+server.post('/post', bodyParser, (req, res) => {
+  const { name, artist, song, spotify_url } = req.body;
+  const user = users.find((user) => user.name === name);
+
+  createPost({
+    user_id: user.id,
+    artist: artist,
+    song: song,
+    spotify_url: spotify_url,
+  });
+
+  res.send(board(name, getAllPosts()));
 });
 
 module.exports = server;
