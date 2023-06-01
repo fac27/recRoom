@@ -2,6 +2,8 @@ const express = require('express');
 
 const server = express();
 const bodyParser = express.urlencoded({ extended: true });
+const multer  = require('multer')
+const upload = multer({ dest: '' })
 
 const { getAllPosts, createPost, deletePost, clearRatings } = require('../model/posts');
 const { getUsers } = require('../model/users');
@@ -27,8 +29,8 @@ server.post('/', bodyParser, (req, res) => {
 });
 
 
-server.post('/post', bodyParser, (req, res) => {
-  const { name, artist, song, spotify_url } = req.body;
+server.post('/post', upload.single('picture'), (req, res) => {
+  const { name, artist, song, spotify_url, picture_path } = req.body;
   const user = users.find((user) => user.name === name);
 
   createPost({
@@ -36,6 +38,7 @@ server.post('/post', bodyParser, (req, res) => {
     artist,
     song,
     spotify_url,
+    picture_path,
   });
 
   res.send(board(name, getAllPosts()));

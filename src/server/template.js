@@ -105,7 +105,7 @@ const addPost = (user) => {
             else form.style.display = 'block';">
         <i class="uil uil-plus"></i></button>
 
-        <form id="addPostForm" method='POST' action='/post' style="display: none">
+        <form id="addPostForm" method='POST' action='/post' enctype="multipart/form-data" style="display: none">
             <label for="artist">Artist: </label>
             <input type="text" name="artist" required>
 
@@ -114,6 +114,9 @@ const addPost = (user) => {
 
             <label for="spotify_url">Spotify URL:</label>
             <input type="text" name="spotify_url" required>
+
+            <label for="picture">Upload Picture</label>
+            <input type="file" name="picture" required>
 
             <input type="text" id="name" name="name" value=${user}>
 

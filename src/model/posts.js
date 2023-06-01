@@ -6,6 +6,7 @@ SELECT
   p.artist,
   p.song,
   p.spotify_url,
+  p.picture_path,
   u.name AS user_name,
   p.posted_at
 FROM posts AS p
@@ -22,17 +23,19 @@ const create_post = db.prepare(/*sql*/ `
     user_id,
     artist,
     song,
-    spotify_url)
+    spotify_url,
+    picture_path)
   VALUES (
     $user_id,
     $artist,
     $song,
-    $spotify_url)
+    $spotify_url,
+    $picture_path)
   RETURNING id
   `);
 
-function createPost({ user_id, artist, song, spotify_url }) {
-  return create_post.get({ user_id, artist, song, spotify_url });
+function createPost({ user_id, artist, song, spotify_url , picture_path}) {
+  return create_post.get({ user_id, artist, song, spotify_url, picture_path });
 }
 
 const delete_post = db.prepare(/*sql*/ `
